@@ -1,0 +1,14 @@
+Nu we alles geencrypt over het Internet kunnen sturen lijkt de wereld veilig, maar die is het nog niet. Neem het volgende scenario:
+\begin{lstlisting}
+Alice: "Hi Bob, it's Alice. Sent me your key." -> Mallory -> Bob
+Alice <- [Mallory's key] <- Mallory <- [Bob's Key] <- Bob
+Alice: [EncMallory"Secret message"] -> Mallory: [EncBob"Secret message"] -> Bob
+\end{lstlisting}
+
+Wat hier gebeurt is dat Alice om Bob's key vraagt, Mallory vangt dat bericht op en stuurt het door naar Bob. Bob stuurt zijn sleutel naar Alice, maar weer vangt Mallory het bericht op, maar stuurt het nu niet door, maar wijzigt het bericht en vervangt Bob's key met die van haar. Mallory bewaart de sleutel van Bob. Alice denkt dat ze de sleutel van Bob heeft ontvangen en encrypt een geheim bericht met de sleutel die eigenlijk van Mallory is. Mallory vangt het bericht op, decrypt het met het private key, encrypt het met Bob's key en stuurt het bericht door naar Bob. Zowel Alice als Bob denken dat alles goed gegaan is en dat ze een geheim bericht over hebben gestuurd, maar ondertussen heeft Mallory het bericht ook gelezen zonder dat Alice of Bob dat kunnen weten.
+
+Dit probleem moeten we oplossen en dat doen we door gebruik te maken van Message Integrity, bericht integriteit. Het betekent dat we gaan controleren of een bericht dat verstuurt is van Alice naar Bob of van Bob naar Alice onderweg veranderd is, zoals in het bovenstaande gebeurde toen Bob zijn key naar Alice stuurde en Mallory er haar eigen key in stopte.
+
+De eerste stap die we nemen is dat we een hash-waarde berekenen over het bericht, daarvoor gebruiken we SHA384. Die hash is unique dus als we die met het bericht meesturen en de ontvangende kant berekent ook met SHA384 de hash-waarde over het ontvangen bericht en deze waardes zijn hetzelfde dan weten we dat het bericht onderweg niet veranderd is. Behalve als Mallory niet alleen Bob's key vervangt door die van haar, maar ook de SHA384 opnieuw berekent en vervangt, dan zijn we uiteindelijk nog niets opgeschoten.
+
+We moeten er dus voor zorgen dat de hash versleuteld wordt. Voor die versleuteling kunnen we de symmetrische key nemen die we beide al hebben. De zender en ontvanger moeten dus beide een hash berekenen over het bericht en deze hash versleutelen met de symmetrische key. De verzender zendt de uitkomst mee naar de ontvanger en de ontvanger vergelijkt de ontvangen waarde met zijn eigen berekening, als de waardes gelijk zijn weten we zeker dat er onderweg niet geknoeid is met het bericht omdat Mallory nooit de geheime sleutel kan weten. Zo'n versleutelde hash waarde noemen we een MAC, Message Authentication Code.

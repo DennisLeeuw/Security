@@ -1,0 +1,9 @@
+Een etag of entity tag is een header die een object op een webpagina unieke waarde geeft. Als de pagina herladen wordt dan kan bijvoorbeeld een cache zien of het het object opnieuw moet ophalen of niet. De browser kan zo navragen of de etag is gewijzigd. Als dat niet het geval is kan de server volstaan met een (304) not modified bericht, dat scheelt bandbreedte en tijd.
+
+Een andere reden voor het gebruik van etags is bij bijvoorbeeld het samenwerken aan een document of database. Als je met twee tegelijk een document opent krijg je dezelfde etag. Wil je een gewijzigde versie opslaan dan kijkt de server eerst of de etag gewijzigd is zo niet dan slaat hij jou versie op. Als de etag wel gewijzigd is in de tussentijd dan zullen er andere maatregelen genomen moeten worden.
+
+Een etag kan bestaan uit een hash, maar ook bijvoorbeeld uit een bestandssysteem ID (i-node). Als etags in jouw server bestaan uit bestandssysteem informatie dan is het verstandiger om etags uit te zetten.
+
+Meer informatie is te vinden op \url{https://techpunch.co.uk/development/should-your-site-be-using-etags-or-not}
+
+\url{https://www.saotn.org/remove-etags-http-header-iis/}

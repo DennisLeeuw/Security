@@ -1,0 +1,14 @@
+Een Denial of Service attack zorgt ervoor dat een bepaalde dienst niet bereikbaar is. Er zijn verschillende technieken om dit te bereiken:
+\begin{itemize}
+\item Heel veel data versturen naar een systeem waardoor alle bandbreedte wordt gebruikt
+\item Heel veel requests naar een service sturen waardoor de service zo druk is dat er geen nieuwe service requests aangenomen kunnen worden
+\item Een machine op een andere manier overbelasten waardoor deze uiteindelijk niet meer kan functioneren
+\end{itemize}
+
+Een aanvaller met een grotere bandbreedte dan een server kan makkelijk de lijn van de server volspoelen, zodat deze verder geen data meer kan ontvangen. Dit was een techniek die in het verleden beter werkte dan tegenwoordig. De meeste thuisgebruikers hebben tegenwoordig een fractie van de bandbreedte die een gemiddeld bedrijf geeft voor zijn Internet verbinding.
+
+Als je weet wat het operating systeem is van de aan te vallen server, dan kan je opzoeken wat het maximum aantal requests is wat een dienst kan ondersteunen. Als jij instaat bent om meer dan deze hoeveelheid requests naar een dienst kan sturen dan kan je ervoor zorgen dat de dienst niet meer beschikbaar is.
+
+Andere mogelijkheden om servers plat te laten is bijvoorbeeld door te zorgen dat er niet voldoende diskruimte meer is. Ook dit is een vorm van een Denial of Service attack. Een van de mogelijkheden die je als aanvaller hebt is door bijvoorbeeld zoveel logging te veroorzaken dat een server op een geven moment andere data niet meer kwijt kan op de disk.
+
+De makkelijkste manier om een Denial of Service attack af te slaan is door je provider te vragen het IP-adres van de aanvaller te blokkeren. Het mooist is natuurlijk als je de provider van de aanvaller kan vragen om de verbinding van de aanvaller te verbreken of te blokkeren. Een andere maatregel is het beperken van het maximum aantal connecties dat een enkele source mag opzetten.

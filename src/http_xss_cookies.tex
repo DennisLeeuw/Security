@@ -1,0 +1,8 @@
+Als je gebruik maakt van cookies dan kan je met een additionele header voorkomen dat client-side scripts bij de cookie kunnen (als de browser de header ondersteunt). De extra header heet HttpOnly\index{Set-Cookie!HttpOnly} en wordt gebruikt in de Set-Cookie header:
+
+\begin{lstlisting}
+Set-Cookie ^(.*)$ $1;HttpOnly;Secure
+\end{lstlisting}
+Als de HttpOnly optie gezet is bij de Set-Cookie header, dan mag geen enkel Client-Side script bij de cookie komen.
+
+Voor meer informatie over Set-Cookie zie de website van Mozilla: \url{https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie}

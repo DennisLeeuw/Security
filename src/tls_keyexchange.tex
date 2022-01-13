@@ -1,0 +1,54 @@
+In het ServerHello bericht hebben we van de server zijn public key gekregen en daarmee kunnen we een encrypted verbinding opzetten tussen de browser en de webserver. Helaas is asymmetrische encryptie erg traag en bij HTTP moeten er heel veel kleine berichten heen en weer gestuurd worden. Het is veel sneller en procesor vriendelijker om AES, een vorm van symmetrische encryptie, te gebruiken. Om over te kunnen stappen van asymmetrisch naar symmetrisch moeten we eerst een gedeelde sleutel met elkaar overeen komen, want alleen met een gedeelde sleutel spreken we van symmetrische encryptie.
+
+Een methode voor het afspreken van een gezamenlijke sleutel moet snel gebeuren, makkelijk schaalbaar zijn en moet over een netwerk gebeuren dat per definitie onbetrouwbaar is..., dat is een behoorlijke uitdaging. We kunnen dus niet zo even over het Internet een sleutel van de een naar de ander sturen en deze gaan gebruiken, want dan kan er altijd iemand die sleutel afluisteren.
+
+De oplossing die gekozen is is het gebruik van een wiskundig grapje dat bedacht is door twee wiskundigen in 1975. Deze wiskundigen zijn Whitfield Diffie en Martin Hellman en de oplossing die zij bedachten heet dan ook Diffie-Hellman\index{Diffie-Hellman}, afgekort DH\index{DH}. Om tot een gezamenlijke sleutel te komen hebben we priemgetallen nodig en een stukje wiskunde dat 'in modulo'-rekenen heet. Dat klinkt moeilijk maar is het niet want je gebruikt het dagelijks zonder dat je erbij nadenkt.
+
+We beginnen met het 'in modulo'-rekenen\index{in modulo}, het staat ook bekend als klok-rekenen\index{klok-rekenen}. Op een analoge klok zijn er 12 uren en die uren komen twee keer per dag langs, 1 keer voor de middag en 1 keer na de middag. Op een digitale klok loopt de klok vaak van 0 tot 24 uur. 13:00 is betekent dan 1 uur in de middag. Wat je doet is 13-12=1 en daardoor weet je dat het 1 uur is. Hetzelfde geldt voor 15:00 uur, dat is 15-12=3 uur in de middag. Voor de uren onder de 12 doe je dit rekensommetje niet. Dit is klokrekenen. 12 is de basis. Als we dit in een wiskundige notatie willen opschrijven dan schrijven we 13mod12 of 15mod12 en spreken dat uit als 13 modulo 12 of 15 modulo 12, daarom heet het in de wiskunde 'in modulo'-rekenen. Op je rekenmachine en in programmeertalen wordt er vaak het procentteken voor gebruikt, dus: 13\%12 of 15\%12.
+
+In modulo rekenen kunnen we natuurlijk ook met andere basis getallen dan 12 doen. 4mod3 is 1. De afspraak bij in modulo rekenen is dat je zovaak het basis getal eraf trekt tot je alleen de rest waarde overhoud. Zo is ook 16mod3 gelijk aan 1, want ik kan 5x het getal 3 van 16 aftrekken en hou dan 1 over.
+
+De andere eis waaraan voldaan moet worden bij DH is dat er gebruik gemaakt moet worden van priemgetallen. Priemgetallen zijn getallen die alleen deelbaar zijn door zichzelf en door 1. Zo is 13 bijvoorbeeld een priemgetal. De enige getallen waardoor 13 deelbaar is is door 13 en door 1.
+
+Als nu twee mensen met elkaar willen communiceren en een gedeelde geheime sleutel willen gebruiken dan kunnen gebruik maken Diffie-Hellman om dat te bereiken. Laten we uit gaan van Alice en Bob die met elkaar berichten willen versturen die met dezelfde sleutel geencrypt zijn.
+
+\begin{flushleft}
+\begin{table}[h!]
+\centering
+	\begin{tabularx}{\textwidth}{ |p{0.3\linewidth}|p{0.3\linewidth}|p{0.3\linewidth}| }
+\hline
+	Alice &
+	Internet &
+	Bob\\
+\hline
+	Alice verzint twee priemgetallen p en g waarbij g kleiner is dan p (p=11, g=7)&
+	Alice stuurt p,q naar Bob &
+	Bob kent nu p en g\\
+\hline
+	Alice bedenkt een getal a &
+	Dit zijn de private keys en ze gaan niet over het Internet &
+	Bob bedenkt een getal b\\
+\hline
+	$A = g^a mod p$ (A=2)&
+	&
+	$B = g^b mod p$ (B=4)\\
+\hline
+	&
+	Alice stuurt A naar Bob en Bob stuurt B naar Alice &
+	\\
+\hline
+	$S = B^a mod p$ (S=9)&
+	&
+	$S = A^b mod p$ (S=9)\\
+\hline
+\end{tabularx}
+\caption{Document wijzigingen}
+\label{table:DH}
+\end{table}
+\end{flushleft}
+
+Over het Internet zijn nu gegaan p, g, A en B. Dus iemand die een aanval op de encryptie wil plegen kent deze getallen, maar dat die aanvaller niet weet zijn de getallen a of b en dus kan de aanvaller nooit S berekenen en omdat het gedeelde geheim S niet over het Internet gegaan is kan de aanvaller S ook niet afluisteren. S is een gedeelde sleutel die door zuiver berekening tot stand is gekomen.
+
+Als we alleen Diffie-Hellman zouden gebruiken dan kunnen we door heel lang monitoren en afluisteren van de verbinding uiteindelijk de sleutel achterhalen omdat altijd dezelde sleutel gebruikt wordt. Dat is niet handig, daarom berekenen systemen regelmatig opnieuw S door hetgeen in tabel \ref{table:DH} staat opnieuw te doen met nieuwe getallen. Het feit dat S maar een korte levensduur heeft noemen in het Engels ephemeral, ofwel kortdurend. Dit noemen we dan ook DHE\index{DHE}\index{Diffie-Hellman Ephemeral}.
+
+De Elliptic-Curve\index{Elliptic-Curve} variant is voornamelijk voor de snelheid.

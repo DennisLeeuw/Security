@@ -1,0 +1,39 @@
+Cross-Site Scripting (XSS) maakt misbruik van het vertrouwen dat een gebruiker heeft in de website die hij of zij benadert. Als een aanvaller in een bericht op bijvoorbeeld een forum extra code in zijn bericht kan zetten dan zal elke browser die het bericht leest deze client-side code vertrouwen omdat hij van een "vertrouwde" site komt. Op deze manier kan een aanvaller toegang krijgen tot session-keys, cookies of andere site-informatie die is opgeslagen op de client. De bouwer van een website moet dan ook zorgen dat dit soort code niet ge\"injecteerd kan worden.
+
+Volgens de Mozilla website\footnote{https://developer.mozilla.org/en-US/docs/Web/Security/Types\_of\_attacks} kunnen we 3 soorten XSS-aanvallen onderscheiden:
+\begin{description}
+	\item[Stored XSS Attacks]\index{Stored XSS Attacks}\index{XSS!Stored XSS Attacks} Waarbij de malicious-code opgeslagen is op de server die de client bezoekt
+	\item[Reflected XSS Attacks]\index{Reflected XSS Attacks}\index{XSS!Reflected XSS Attacks} Hierbij staat de malicious-code niet op de server, maar komt deze via een omweg, bijvoorbeeld een zou resultaat of een error message bij de browser terecht. De code wordt dan dus doorgegeven door de server zonder dat deze het weet en voor de browser lijkt de data van de server te komen.
+	\item[DOM-based XSS Attacks]\index{DOM-based XSS Attacks}\index{XSS!DOM-based XSS Attacks} De DOM is de omgeving waarin een pagina "leeft". Met JavaScript kan je bijvoorbeeld een pagina on-the-fly wijzigen, dat doe je door de DOM te manipuleren. Dit kan ook misbruikt worden via een XSS-aanval.
+\end{description}
+
+Headers die gezet moeten worden vanuit de web-applicatie\index{X-XSS-Prection}\index{Header!X-XSS-Protection}:
+\begin{lstlisting}
+X-XSS-Protection: 1; mode=block
+\end{lstlisting}
+
+Een bredere beveiliging tegen XSS is zijn CSP (Content Security Policy) headers, die beperken waar een bepaald object vandaan mag komen\index{default-src}\index{script-src}\index{img-src}\index{child-src}\index{Content-Security-Policy!default-src}\index{Content-Security-Policy!script-src}\index{Content-Security-Policy!img-src}\index{Content-Security-Policy!child-src}\index{insafe-inline}.
+\begin{lstlisting}
+Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline'; img-src 'https://*'; child-src 'none';
+\end{lstlisting}
+Je mag een Content-Security-Policy ook meegeven via de META data van een HTML pagina:
+\begin{lstlisting}
+<meta http-equiv="Content-Security-Policy"
+      content="default-src 'self'; img-src https://*; child-src 'none';">
+\end{lstlisting}
+
+Voor een compleet overzicht van CSP zie de website \url{https://content-security-policy.com/}.
+
+Stel dat we een website beheren die als header meegeeft naar de browser: Content-Security-Policy script-src 'https://example.com'. Dan kunnen scripts alleen vanaf domein afkomstig zijn. Inline JavaScript gaat dus niet werken. Er is echter een truc om hier omheen te werken, die maakt gebruikt van MIME-sniffing.
+
+Het Internet is gemaakt om tekst in de ASCII\footnote{American Standard Code for Information Interchange: een encoding standaard om tekst om te zetten naar getallen, zodat een computer er mee kan werken en zodat tekst getransporteerd kan worden via digitale media} character set te versturen, binaire data kunnen we niet zo versturen. Binaire data moet eerst omgezet worden in de characters die in de ASCII tabel voorkomen. Deze omzetting wordt gedaan door gebruik te maken van MIME (Multipurpose Internet Mail Extension), zoals de naam duidelijk maakt ooit bedacht voor mail, nu ook gebruikt voor veel meer zaken, onder andere voor HTTP. Als data verstuurd wordt over het Internet dat kan de Content-Type\index{Content-Type}\index{Header!Content-Type} header gebruikt worden om aan te geven dat data bijvoorbeeld een HTML-pagina is door de MIME-type te zetten naar text/HTML. Echter als de Content-Type header niet aanwezig is dan zal een browser op best-effort basis proberen uit te zoeken wat voor type data het heeft binnen gekregen. Dit naar beste kunnen interpreteren van binnengekomen data heet MIME-sniffing. Het kan ook gebeuren dat een programmeur bijvoorbeeld een foutje heeft gemaakt en dat de Content-Type op text/plain staat, maar dat de browser ontdekt dat het eigenlijk JavaScript is. Zonder veel omhaal zullen de meeste browser de code dan uitvoeren in de veronderstelling dat dat eigenlijk is wat de gebruiker wil. Deze "feature" die het voor de gebruiker makkelijker moet maken opent ook een gat in de veiligheid.
+
+Als een aanvaller de kans heeft om een tekst bestand op de server te zetten met daarin JavaScript code dan kan hij doormiddel van een HTML-tag zoals:
+\begin{lstlisting}
+<script src="https://example.com/hack.txt"></script>
+\end{lstlisting}
+de code bij de browser krijgen. De Content-Type header zal keurig text/plain melden en de browser zal ontdekken dat er JavaScript aangeboden wordt en deze uitvoeren. Om dit uitvoeren te voorkomen moet er een andere header gezet worden\index{X-Content-Type-Options}\index{Header!X-Content-Type-Options}\index{nosniff}:
+\begin{lstlisting}
+X-Content-Type-Options: nosniff
+\end{lstlisting}
+Deze optie vertelt de browser dat hij de Content-Type header serieus moet nemen en niet zijn eigen interpretatie erop los mag laten. Let echter wel op! als de Content-Type text/plain is en de X-Content-Type-Options is op nosniff gezet dan zal de browser letterlijk doen wat je wil en de tekst weergeven als plain tekst. Als het dus code of een HTML pagina was dan ziet de gebruiker de broncode, het is dus cruciaal dat de Content-Type header goed staat.

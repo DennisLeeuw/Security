@@ -1,0 +1,5 @@
+Via een fout in bijvoorbeeld de code van de webserver of een scriptingtaal zou een aanvaller toegang kunnen krijgen tot de server (shell-access), of via een bug data kunnen schrijven naar het bestandssysteem.
+
+Als de aanvaller via een bug data kan schrijven naar het bestandssysteem, dan zou deze ook bestaande bestanden kunnen overschrijven, afhankelijk van hoe de rechten op het systeem zijn ingesteld. Het is dus van belang om de webserver de meest minimale rechten te geven op de bestanden waar het proces bij moet kunnen, meestal betekent dat dat read-only rechten voldoende zijn. Het server-proces hoeft geen data te kunnen schrijven. Een aparte gebruiker kan dan de rechten krijgen om de bestanden op de server aan te passen.
+
+Ook als een aanvaller shell-access of executie-rechten kan krijgen via de server is het van belang dat de rechten (gebruiker) waaronder de server-draait de minst mogelijke rechten heeft.

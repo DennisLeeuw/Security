@@ -1,0 +1,5 @@
+Cross-Site Request Forgery is een exploit methode die het vertrouwen van de site in de user (user browser) misbruikt. De aanval probeert ervoor te zorgen dat een gebruiker iets naar een website stuurt wat niet de bedoeling is. Een aanvaller zou bijvoorbeeld in een post op een forum een bericht kunnen achterlaten met daarin de HTML-tag:
+\begin{lstlisting}
+<img src="https://stemopmij.nl/dennisisthebest.html">
+\end{lstlisting}
+Omdat een image geen click behoeft om aangesproken te worden, maar door een browser altijd geladen wordt wordt de opgenomen URL meteen uitgevoerd. Op deze manier kan je valse stemmen genereren.

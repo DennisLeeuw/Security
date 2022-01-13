@@ -1,0 +1,13 @@
+In de httpd.conf set
+\begin{lstlisting}
+ServerTokens Prod
+\end{lstlisting}
+Dit voorkomt dat Apache zijn versie nummer meegeeft in de response header. De default voor deze parameter is 'Full'
+
+Een andere waarde die handig is om te zetten in httpd.conf is:
+\begin{lstlisting}
+ServerSignature Off
+\end{lstlisting}
+met deze setting zal Apache ook de versie niet weergeven op de door de server gegenereerde pagina's zoals bijvoorbeeld de error pagina's.
+
+Als je wil voorkomen dat bekend wordt dat de server een Apache server is dan met je gebruik maken van modSecurity, daarmee kan je ook voorkomen dat de server zich meldt als Apache server.

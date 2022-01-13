@@ -1,0 +1,5 @@
+Gebruik de registry editor om IIS via SCHANNEL TLS 1.2 of liever nog TLS 1.3 te laten gebruiken dit is een server wide setting, since Windows Server 2019 kan het ook per site (niet behandeld in dit document):
+\begin{lstlisting}
+HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.2\Server
+\end{lstlisting}
+zet de DisabledByDefault op 0, zodat het protocol ge-enabled is. Voor de SSL-varianten en voor TLS lager dan 1.2 zet DisabledByDefault op 1 zodat deze varianten gedisabled zijn.

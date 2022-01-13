@@ -1,0 +1,22 @@
+Om te zorgen dat IIS niet aan de hele wereld gaat lopen vertellen welke versie het is en welke ASP.NET versie het gebruikt doorloop je de volgende stappen:
+\begin{enumerate}
+\item Open "Internet Information Services (IIS) Manager".
+\item Als het voor alle websites moet gelden (globaal), klik: "Select IIS node"
+\item Open de "Configuration Editor"
+\begin{description}
+\item[x-aspnet-version] Voor het verwijderen van de x-aspnet-version header ga naar system.web, httpRuntime, enableVersionHeader en zet het naar 'false'
+\item[server] Voor het verwijderen van de server header ga naar system.webServer, security, requestFiltering, removeServerHeader en zet het naar 'true'
+\end{description}
+\item Klik op "HTTP Response Headers"
+\item Selecteer "X-Powered-By" header en klik op 'Remove'
+\end{enumerate}
+
+Om te voorkomen dat Microsoft de API versie vrij geeft zet als laatste:
+\begin{enumerate}
+	\item Open de registry editor
+	\item ga naar:
+		\begin{lstlisting}
+Computer\HKEY_LOCAL_MACHINE\SYSTEM\CurentControlSet\Services\HTTP\Parameters
+		\end{lstlisting}
+	\item zet de DisableServerHeader (REG\_DWORD) registry key van 0 naar 1
+\end{enumerate}

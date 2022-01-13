@@ -1,0 +1,187 @@
+\documentclass[a4paper,12pt,twoside,openright,titlepage]{book}
+
+%Additional packages
+\usepackage[ascii]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[dutch,english]{babel}
+\usepackage{syntonly}
+\usepackage[official]{eurosym}
+%\usepackage[graphicx]
+\usepackage{graphicx}
+\graphicspath{ {./images/} }
+\usepackage{float}
+\usepackage{xurl}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true, linkcolor=blue, citecolor=blue, filecolor=blue, urlcolor=blue, pdftitle=, pdfauthor=, pdfsubject=, pdfkeywords=}
+\usepackage{tabularx}
+\usepackage{scrextend}
+\addtokomafont{labelinglabel}{\sffamily}
+\usepackage{listings}
+\usepackage{adjustbox}
+
+%define inch
+\usepackage{mathpazo,amsmath}
+\def\inch#1{#1''}
+
+% Turn on indexing
+\usepackage{imakeidx}
+\makeindex[intoc]
+
+% Define colors
+\usepackage{color}
+\definecolor{ashgrey}{rgb}{0.7, 0.75, 0.71}
+
+% Listing style
+\lstset{
+  backgroundcolor=\color{ashgrey},   % choose the background color; you must add \usepackage{color} or \usepackage{xcolor}; should come as last argument
+  basicstyle=\footnotesize,        % the size of the fonts that are used for the code
+  breakatwhitespace=false,         % sets if automatic breaks should only happen at whitespace
+  breaklines=true,                 % sets automatic line breaking
+  extendedchars=true,              % lets you use non-ASCII characters; for 8-bits encodings only, does not work with UTF-8
+  frame=single,	                   % adds a frame around the code
+  keepspaces=true,                 % keeps spaces in text, useful for keeping indentation of code (possibly needs columns=flexible)
+  rulecolor=\color{black},         % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. comments (green here))
+  showspaces=false,                % show spaces everywhere adding particular underscores; it overrides 'showstringspaces'
+}
+
+% Uncomment for production
+% \syntaxonly
+
+% Style
+\pagestyle{headings}
+
+%%%%%%%%%%%%%%%%%%
+% Begin document %
+%%%%%%%%%%%%%%%%%%
+
+% Define document
+\author{D. Leeuw}
+\title{Security: Webservers}
+\date{\today\\v.0.3.0}
+
+\begin{document}
+\selectlanguage{dutch}
+
+\maketitle
+
+\copyright\ 2021 Dennis Leeuw\\
+
+\begin{figure}[H]
+\includegraphics[width=0.3\textwidth]{CC-BY-SA-NC.png}
+\end{figure}
+
+\bigskip
+
+\input{src/CC-licentie}
+
+%%%%%%%%%%%%%%%%%%%
+%%% Introductie %%%
+%%%%%%%%%%%%%%%%%%%
+
+\frontmatter
+\chapter{Over dit Document}
+\input{src/DocOver}
+\input{src/DocChanges}
+
+%%%%%%%%%%%%%%%%%
+%%% De inhoud %%%
+%%%%%%%%%%%%%%%%%
+\tableofcontents
+
+\mainmatter
+
+\chapter{Een veilige webserver}
+\input{src/websecurity_intro}
+\section{Client side information}
+\input{src/webbrowser_intro}
+\section{Website debugging}
+\input{src/webbrowser-debugging}
+\subsection{Microsoft Edge}
+\input{src/webbrowser_debugging_edge}
+
+\chapter{Non-disclosure}
+\section{Apache}\index{Apache}
+\subsection{Version disclosures}\index{Apache!Version disclosure}
+\input{src/apache_disclosure}
+\section{NGINX}\index{NGINX}
+\subsection{Version disclosures}\index{NGINX!Version disclosure}
+\input{src/nginx_disclosure}
+\section{IIS}
+\subsection{Version disclosures}\index{IIS!Version disclosure}\index{Version disclosure!IIS}
+\input{src/iis_disclosure}
+\subsection{Methods}
+\input{src/iis_methods}
+\subsection{Directory browsing}\index{IIS!Directory browsing}\index{Directory browsing!IIS}
+\input{src/iis_directory_browsing}
+%\subsection{ETags}
+%\input{src/iis_etag}
+
+\chapter{Website Scripting Languages}
+\input{src/scripting_intro}
+\section{PHP}
+\input{src/php}
+
+\chapter{Webserver encryption (SSL/TLS)}\index{SSL}\index{TLS}
+\input{src/webserver_encryptie}
+\section{TLS - Transport Layer Security}\index{TLS}\index{Transport Layer Security}
+\input{src/tls_handshake}
+\subsection{Cipher suites}\index{Cipher suites}
+\input{src/tls_ciphersuites}
+\subsection{Key Exchange}\index{Key exchange}
+\input{src/tls_keyexchange}
+%\input{src/tls_pfs}
+\subsection{Message integrity}\index{Message integrity}\index{MAC}
+\input{src/tls_mac}
+\subsection{TLS versions}
+\input{src/tls_versions}
+\section{IIS en TLS}\index{IIS}\index{Internet Information Server!TLS}
+\subsection{HTTP Strict-Transport-Security (HSTS)}\index{IIS!HSTS}\index{IIS!HTTP Strict-Transport-Security}\index{HSTS!IIS}\index{HTTP Strict-Transport-Security!IIS}
+\input{src/iis_hsts}
+\subsection{SSL en TLS}\index{IIS!SSL}\index{IIS!TLS}\index{TLS!IIS}\index{SSL!IIS}
+\input{src/iis_tls}
+\subsection{Ciphers}\index{IIS!Ciphers}\index{Ciphers!IIS}
+\input{src/iis_ciphers}
+\subsection{Hashes}\index{IIS!Hashes}\index{Hashes!IIS}
+\input{src/iis_hashes}
+\subsection{Key Exchange}\index{IIS!Key exchange}\index{Key exchange!IIS}
+\input{src/iis_key_exchange}
+
+\chapter{Network Attacks}
+\section{DoS}\index{DoS}\index{Denial of Service}
+\input{src/dos}
+\subsection{DDoS}\index{DDoS}\index{Distributed Denial of Service}
+\input{src/ddos}
+\section{Gaining access}
+\input{src/access.tex}
+\subsection{Defacing}\index{Deface}
+\input{src/access_deface}
+\subsection{Server access}
+\input{src/access_server}
+\subsubsection{IIS owner and rights}\index{IIS!Owner}\index{IIS!Rights}
+\input{src/access_iis}
+\subsection{Database access}
+\input{src/access_db}
+
+\chapter{Webserver Attacks}\index{Webserver attacks}
+\section{Slowloris}\index{Slowloris}
+\input{src/http_slowloris}
+\subsection{IIS en slowloris}\index{Slowloris!IIS}\index{IIS!Slowloris}
+\input{src/http_slowloris_iis}
+\section{Cross-Side Request Forgery}\index{CSRF}\index{Cross-Side Request Forgery}
+\input{src/http_csrf}
+\section{Cross-Side Scripting}\index{XSS}\index{Cross-Side Scripting}
+\input{src/http_xss}
+\subsection{XSS en PHP}
+\input{src/http_xss_php}
+\subsection{XSS en Cookies}
+\input{src/http_xss_cookies}
+
+
+%%%%%%%%%%%%%%%%%%%%%
+%%% Index and End %%%
+%%%%%%%%%%%%%%%%%%%%%
+%\backmatter
+\printindex
+\end{document}
+
+%%% Last line %%%

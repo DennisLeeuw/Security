@@ -1,0 +1,10 @@
+De globale, dat is voor alle sites, setting voor de key exchange die gebruikt kunnen worden door IIS worden beschreven in de SCHANNEL settings in de registry:
+\begin{lstlisting}
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\SecurityProviders\Schannel\KeyExchangeAlgorithms]
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\KeyExchangeAlgorithms\Diffie-Hellman]
+	"Enabled"=dword:1
+	"ServerMinKeyBitLength"=dword:00000800
+		1024 bits: 00000400
+		2048 bits: 00000800
+		4096 bits: 00001000
+\end{lstlisting}

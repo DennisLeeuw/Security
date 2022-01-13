@@ -1,0 +1,37 @@
+Zoals elk goed protocol begint ook TLS met een handshake tussen de client en de server. De basis is een ClientHello bericht en daarop het antwoord van de server met een ServerHello bericht. In deze communicatie wordt uitgewisseld welke ciphers en welke versie van SSL/TLS er gesproken gaat worden voor de rest van de conversatie. Er wordt gekozen voor de hoogst mogelijke versie van TLS die beide kanten ondersteund.
+
+Gedurende deze handshake is het de server die zijn certificaat opstuurt aan de client, waardoor de client onder andere de public key van de server krijgt en dus versleutelde data naar de server kan sturen. Daarnaast ontvangt het ook gegevens over het domein waarvoor het certificaat geldig is en de digitale handtekening van degene die het certificaat ondertekend heeft (CA). Met deze gegevens kan de client bepalen of hij te maken heeft met de instantie (site) waarmee hij wilde praten. De client bepaalt dus gedurende deze handshake of hij de server voldoende vertrouwt om verder te gaan met de verbinding.
+
+De handshake tussen die client (browser) en de server (webserver) ziet er ongeveer uit zoals beschreven in tabel \ref{table:TLSHandshake}.
+
+\begin{flushleft}
+\begin{table}[h!]
+\centering
+	\begin{tabularx}{\linewidth}{ |p{0.2\linewidth} p{0.4\linewidth} p{0.3\linewidth}| }
+\hline
+	Client data &
+	Message &
+	Server data\\
+\hline
+	Clients prepares a message for the server containing the cipher suites and maximum SSL version it supports and sends this to the server. &
+	\textbf{ClientHello} -> &
+	\\
+	&
+	<- \textbf{ServerHello} - &
+	The server answers with the cipher suite it wants to use and the SSL version to be used.\\
+	&
+	<- CertificateExchange - &
+	Server sends its SSL certificate containing various pieces of data, including the name of the owner, the property (eg. domain) it is attached to, the certificates public key, the digital signature and information about the certificates validity dates. \\
+	&
+	<- CertificateRequest - &
+	Optional: Request for a client certificate for mutual authentication. \\
+	&
+	<- \textbf{ServerHelloDone} &
+	\\
+\hline
+	\end{tabularx}
+	\caption{TLS Handshake}
+	\label{table:TLSHandshake}
+\end{table}
+\end{flushleft}
+

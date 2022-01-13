@@ -1,0 +1,22 @@
+Als je op een website een formulier hebt dat er ongeveer zo uit ziet:
+\begin{lstlisting}
+<form action="myform.php" method="post">
+ <input type="text" name="textfield" value="">
+ <input type="submit" name="submit" value="Submit">
+</form>
+\end{lstlisting}
+
+En een aanvaller vult in het textfield geen gewone tekst in maak bijvoorbeeld een stukje JavaScript:
+\begin{lstlisting}
+<script>alert("Hello world!")</script>
+\end{lstlisting}
+
+dan wordt de JavaScript code uitgevoerd door de browser als je de data zonder verdere controle afbeeld via echo:
+\begin{lstlisting}
+echo $_POST["textfield"];
+\end{lstlisting}
+
+Dit kan je tegen gaan door bijvoorbeeld JavaScript alleen toe te staan als het script geladen wordt als extern script van het eigen domein\index{script-src}, inline JavaScript is dan automatisch verboden:
+\begin{lstlisting}
+script-src 'self'
+\end{lstlisting}

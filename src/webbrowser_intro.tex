@@ -1,0 +1,12 @@
+Via de webbrowser haal je data op vanaf een webserver. Je browser zorgt ervoor dat de opgehaalde data wordt afgebeeld op je scherm zoals het door de ontwerpers van de site bedoeld is. Om deze uitwisseling van data mogelijk te maken zijn er een aantal zaken noodzakelijk:
+\begin{itemize}
+\item Een taal waarmee browser en server elkaar verstaan: het netwerk protocol HTTP
+\item Een taal om duidelijk te maken hoe de data weergegeven moet worden: de opmaak taal HTML en CSS
+\item De uit te wisselen data
+\end{itemize}
+
+Om met het laatste te beginnen, de data, dat is alle informatie die je via het web zou kunnen uitwisselen, zoals tekst, plaatjes, video en muziek. Al deze data kan in een bepaalde opmaak (layout) worden aangeboden.
+
+HTML (HyperText Markup Language) en CSS (Cascaded Style Sheets) zijn de onderdelen die bepalen hoe de data op het scherm weergegeven moeten worden, we noemen ze dan ook wel opmaaktalen of markup languages in het Engels. HTML beschrijft de elementen in een document, dus HTML beschrijft of iets een paragraaf is, of een titel van een document en CSS vertelt daarna hoe die paragraaf of titel weergegeven moet worden, lettertype, grootte, dik of niet dik gedrukt.
+
+Tot slot moet de data met alle opmaak, plaatjes, etc. over het netwerk getransporteerd worden en dat gebeurt door HTTP, het HyperText Transfer Protocol. HTTP zorgt voor het transport van data en bij dat transport horen ook headers die meer zeggen over de data, het is de zogenaamde META-data, dus data die iets vertelt over de data. Zo heeft een web-pagina een header die Content-Type heet en die zegt dat de aangeboden data text/html is, het is dus platte tekst, geen binaire data, en de opmaak is in html. Een plaatje kan een header hebben Content-Type: image/png. Elk element van een website heeft zo zijn eigen META-data (headers). De headers kunnen ook gebruikt worden om bepaalde security maatregelen door te geven. Dit kan van de client naar de server en van de server naar de client.

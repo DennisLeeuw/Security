@@ -1,0 +1,10 @@
+De meeste webserver hoeven niet alle commando's (methods) te ondersteunen. GET, HEAD en POST zijn over het algemeen voldoende. Het uitschakelen van de overige methods OPTIONS, PUT, DELETE, TRACE, CONNECT kan binnen IIS als volgt:
+\begin{enumerate}
+\item Ga naar de IIS manager
+\item Selecteer de server naam, of de site, afhankelijk of je het voor 1 of alle sites wil zetten
+\item Dubbel klik op Request filtering
+\item Ga naar de HTTP Verbs tab
+\item Selecteer de Deny Verb van het rechter paneel
+\item Type de naam van de method die je wil disabelen.
+\end{enumerate}
+doe dit voor OPTIONS, PUT, DELETE, TRACE en CONNECT.

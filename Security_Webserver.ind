@@ -1,0 +1,147 @@
+\begin{theindex}
+
+  \item Apache, 7
+    \subitem Version disclosure, 7
+
+  \indexspace
+
+  \item Bot-net, 24
+
+  \indexspace
+
+  \item child-src, 29
+  \item Cipher suites, 15
+  \item Ciphers
+    \subitem IIS, 21
+  \item Content-Security-Policy
+    \subitem child-src, 29
+    \subitem default-src, 29
+    \subitem img-src, 29
+    \subitem script-src, 29
+  \item Content-Type, 29
+  \item Cross-Side Request Forgery, 28
+  \item Cross-Side Scripting, 28
+  \item CSRF, 28
+
+  \indexspace
+
+  \item database, 25
+  \item DDoS, 24
+  \item Deface, 25
+  \item default-src, 29
+  \item Denial of Service, 23
+  \item DH, 17
+  \item DHE, 19
+  \item Diffie-Hellman, 17
+  \item Diffie-Hellman Ephemeral, 19
+  \item Directory browsing
+    \subitem IIS, 9
+  \item Distributed Denial of Service, 24
+  \item DOM-based XSS Attacks, 29
+  \item DoS, 23
+
+  \indexspace
+
+  \item Elliptic-Curve, 19
+
+  \indexspace
+
+  \item Hashes
+    \subitem IIS, 21
+  \item Header
+    \subitem Content-Type, 29
+    \subitem X-Content-Type-Options, 30
+    \subitem X-XSS-Protection, 29
+  \item HSTS
+    \subitem IIS, 20
+  \item HTTP Strict-Transport-Security
+    \subitem IIS, 20
+  \item HTTPs, 13
+
+  \indexspace
+
+  \item IIS, 20
+    \subitem Ciphers, 21
+    \subitem Directory browsing, 9
+    \subitem Hashes, 21
+    \subitem HSTS, 20
+    \subitem HTTP Strict-Transport-Security, 20
+    \subitem Key exchange, 22
+    \subitem Owner, 25
+    \subitem Rights, 25
+    \subitem Slowloris, 27
+    \subitem SSL, 21
+    \subitem TLS, 21
+    \subitem Version disclosure, 8
+  \item img-src, 29
+  \item in modulo, 17
+  \item insafe-inline, 29
+  \item Internet Information Server
+    \subitem TLS, 20
+
+  \indexspace
+
+  \item Key exchange, 17
+    \subitem IIS, 22
+  \item klok-rekenen, 17
+
+  \indexspace
+
+  \item MAC, 19
+  \item Message integrity, 19
+
+  \indexspace
+
+  \item NGINX, 7
+    \subitem Version disclosure, 7
+  \item nosniff, 30
+
+  \indexspace
+
+  \item php.ini
+    \subitem php\_exposure, 11
+  \item php\_exposure, 11
+
+  \indexspace
+
+  \item Reflected XSS Attacks, 28
+
+  \indexspace
+
+  \item script-src, 29, 31
+  \item Secure Socket Layer, 13
+  \item Set-Cookie
+    \subitem HttpOnly, 31
+  \item Slowloris, 27
+    \subitem IIS, 27
+  \item SSL, 13
+    \subitem IIS, 21
+  \item Stored XSS Attacks, 28
+
+  \indexspace
+
+  \item TLS, 13
+    \subitem IIS, 21
+  \item Transport Layer Security, 13
+
+  \indexspace
+
+  \item Version disclosure
+    \subitem IIS, 8
+
+  \indexspace
+
+  \item WAF, 24
+  \item Web Application Firewall, 24
+  \item Webserver attacks, 27
+
+  \indexspace
+
+  \item X-Content-Type-Options, 30
+  \item X-XSS-Prection, 29
+  \item XSS, 28
+    \subitem DOM-based XSS Attacks, 29
+    \subitem Reflected XSS Attacks, 28
+    \subitem Stored XSS Attacks, 28
+
+\end{theindex}

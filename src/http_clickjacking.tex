@@ -1,0 +1,20 @@
+Click-jacking is een poging om gebruikers op een link, button of plaatje te laten klikken die niet doet wat de gebruiker verwacht. Dit kan gebruikt worden om bijvoorbeeld malware te installeren of om bankgegevens of andere persoonlijke data van de gebruiker te verzamelen. Een aanval kan uitgevoerd worden door bijvoorbeeld een transparent layer met een andere functionaliteit te leggen over een bestaande webpagina.
+
+Het tegen gaan van Click-jacking kan zowel vanaf de client door de installatie van verschillende add-ons in de verschillende browsers (NoScript, NoClickjack, GuardedID) of op beperkte schaal op de server door te bepalen welke frames toegestaan zijn. Dit beperkt dus alleen click-jacking met frames.
+
+\begin{itemize}
+	\item de X-Frame-options\index{X-Frame-options} (RFC 7034) header die bepaalt waarvandaan een frame mag worden geladen: Nooit (DENY), alleen van een bepaald domein (ALLOW-FROM domain) of alleen van dezelfde site (SAMEORIGIN). Hieronder staan 3 verschillende voorbeelden, het natuurlijk de bedoeling van je \'e\'en van deze kiest.
+\begin{lstlisting}
+X-Frame-Options: DENY
+X-Frame-Options: SAMEORIGIN
+X-Frame-Options: ALLOW-FROM www.example.com www.made-it.com
+\end{lstlisting}
+\item de opvolger van de X-Frame-options is de frame-ancestor\index{Content-Security-Policy!frame-ancestor} optie uit de CSP\index{CSP} (Content Security Policy\index{Content Security Policy}). Deze optie gaat verder en staat alle vormen van embedding toe of niet. De frame-ancestors optie van CSP vervangt de X-Frame-options header en zou voorrang moeten krijgen als beide headers gegeven worden. Voorbeelden (kies een van de opties):
+\begin{lstlisting}
+Content-Security-Policy: frame-ancestors 'none'
+Content-Security-Policy: frame-ancestors 'self'
+Content-Security-Policy: frame-ancestors www.example.com www.made-it.com
+\end{lstlisting}
+\end{itemize}
+
+Voor een complete uitleg over CSP zie de website \url{https://content-security-policy.com/}.

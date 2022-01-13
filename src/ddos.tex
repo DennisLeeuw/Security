@@ -1,0 +1,7 @@
+Een Distributed Denial of Service attack is een DOS die uitgevoerd wordt door gebruik te maken van meerdere systemen op het Internet. Door meerdere systemen te gebruiken kan de aangevallen server niet beschermd worden door \'e\'en IP-adres te blokkeren. Het feit dat de aanval van verschillende IP-adressen komt maakt het vele malen moeilijker om deze aanval af te slaan. Een DDoS wordt dus uitgevoerd door verschillende machines een aanval te laten uitvoeren op een enkele host of dienst. Een aanvaller stuurt hiervoor een zogenaamde Command \& Control-server aan die op zijn beurt de verschillende machines in een Bot-net\index{Bot-net} aanstuurt.
+
+Er zijn twee soorten aanvallen, de aanvallen op netwerkniveau en de aanvallen op applicatieniveau.
+
+De aanvallen op de netwerk-layers (OSI layers 3 en 4) bestaan uit SYN, UDP of ICMP-floods of reflection attacks (DNS, NTP). Deze aanvallen zijn gericht op de bandbreedte en de servercapaciteit. De tegen maatregelen bestaan uit het uitfilteren van de juiste packetten, zorgen dat je voldoende extra bandbreedte beschikbaar hebt, gebruik van DNS uitwijk mogelijkheden, loadbalancers en het in voorraad hebben van extra servercapaciteit.
+
+De aanvallen op applicatieniveau zijn complexer en komen daardoor minder vaak voor. Het belangrijkste wapen tegen deze aanvallen is de WAF\index{WAF} (Web Application Firewall\index{Web Application Firewall}).
