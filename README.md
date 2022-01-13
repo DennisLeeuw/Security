@@ -7,7 +7,7 @@ De reden om een open source boek te willen maken heeft te maken met een aantal r
 * De derde reden is dat het onderwijs op deze manier goedkoper wordt, de boeken hoeven het boek niet meer te kopen en zo wordt onderwijs toegankelijker voor meer mensen.
 * De vierde reden is dat we sneller nieuwe technieken kunnen toevoegen. Gezamenlijk kunnen we zorgen dat fouten en vernieuwingen niet hoeven te wachten totdat voorraden bij uitgevers zijn uitverkocht, we kunnen een nieuwe versie maken als dat nodig is.
 
-Het Security boek bestaat uit losse delen die 'e'en onderwerp behandelen. De beschikbare delen zijn:
+Het Security boek bestaat uit losse delen die een onderwerp behandelen. De beschikbare delen zijn:
 * Security: Webserver
 
 ## PDF Conversie
