@@ -1,0 +1,60 @@
+De onbreekbare code\index{Onbreekbare code} bestaat en die heet: One-time pad\index{One-time pad} (OTP\index{OTP}). De one-time pad maakt gebruik van modulo rekenen (zie Appendix \ref{chap:modulo}).
+
+Er zijn een aantal eisen waaraan de versleuteling met een one-time pad moet voldoen:
+\begin{enumerate}
+\item \label{nl:secret} De sleutel moet volledig geheim gehouden worden en mag alleen bekend zijn aan de versleutelaar en aan degene die het bericht moet ontcijferen
+\item \label{nl:reuse} De sleutel mag niet in zijn geheel of gedeeltelijk herbruikt worden (vandaar one-time)
+\item \label{nl:length} De sleutel moet net zo lang of langer zijn dan het bericht dat versleuteld wordt
+\item \label{nl:random} De sleutel moet bestaan uit volledig willekeurige (random) waarden. Er mag dus geen algoritme worden gebruikt, maar er moet zoiets gebruikt worden als een hardware random number generator
+\end{enumerate}
+
+In tabel \ref{tab:onetimepad} staan 2 rijen volledig willekeurige cijfers (eis \ref{nl:random}). Ze zijn opgedeeld in blokken van 10 cijfers en er zijn 5 blokken per rij. Dat betekent dat we 100 willekeurige cijfers hebben. Als we een bericht schrijven in alleen hoofdletters en de letters omzetten via de ASCII tabel \url{https://en.wikipedia.org/wiki/ASCII} dan hebben we voor de letters A tot Z de decimale getallen 65 tot 90 nodig. We gebruiken dus 2 cijfers per letter. Met een maximale sleutellengte van 100 cijfers kunnen we dus maximaal een bericht van 50 characters verstuuren om te blijven voldoen aan de eis \ref{nl:length}.
+
+\begin{table}[h!]
+\begin{tabular}{ | c | }
+\hline
+	Serial: 5837424 \\
+\hline
+	7867562615 8641646198 7616531254 5327516761 2563621687 \\
+	5674816856 9887216521 9563201567 3618568716 5768716568 \\
+\hline
+\end{tabular}
+\caption{One-time pad}
+\label{tab:onetimepad}
+\end{table}
+
+Als een spion een bericht wil versturen dan stelt hij eerst zijn bericht op van maximaal 50 tekens (zie regel 1 uit tabel \ref{tab:otp:encrypt}), per letter zet hij de waarde van de ASCII tabel er onder (zie regel 2 uit tabel \ref{tab:otp:encrypt}) en dan net zoveel cijfers van de one-time pad als nodig is om even veel cijfers te hebben als er voor het bericht nodig zijn (zie regel 3 van tabel \ref{tab:otp:encrypt}). Tot slot komt er nog wat reken werk. We tellen het eerste cijfer van het eerste karacter op bij het eerste cijfer van de sleutel en daarna het tweede cijfer van het eerste karakter op bij het tweede cijfer van de sleutel, daar het eerste cijfer van het tweede karakter bij het derde cijfer van de sleutel, etc. (zie regel 4 van tabel \ref{tab:otp:encrypt}) en tot slot bereken we van de twee verkregen cijfers bij elk karakter de modulo 10 (mod10) en zetten we de uitkomst weer achter elkaar zodat we per karakter weer een getal hebben van 2 cijfers (zie regel 5 van tabel \ref{tab:otp:encrypt}).
+
+\begin{table}[h!]
+\setlength\tabcolsep{1.5pt}
+\centering
+\begin{tabular}{ | c || c | c | c | c | c | c | c | c | c | c | c | c | }
+\hline
+	1 & O    & P    & H    & A    & L     & E    & N    & O    & P    & J    & F    & K  \\
+	2 & 81   & 80   & 72   & 65   & 76    & 69   & 78   & 81   & 80   & 74   & 70   & 75 \\
+	3 & 78   & 67   & 56   & 26   & 15    & 86   & 41   & 64   & 61   & 98   & 76   & 16 \\
+	4 & 15 9 & 14 7 & 12 8 & 8 11 & 8 11  & 14 15& 11 9 & 14 5 & 14 1 & 16 12& 14 6 & 8 11 \\
+	5 & 59   & 47   & 28   & 81   & 81    & 45   & 19   & 45   & 41   & 62   & 46   & 81 \\
+\hline
+\end{tabular}
+\caption{OTP: Encrypt}
+\label{tab:otp:encrypt}
+\end{table}
+
+De spion moet hierna het serienummer van het bericht opschrijven plus de gemaakt te cijferreeks: 5837424594728818145194541624681 en deze code is volledig onbreekbaar. Alleen degene met een papiertje met hetzelfde serienummer en dus dezelfde sleutel kan dit bericht decoderen.
+
+Het decoderen verloopt door het omgekeerde proces te doorlopen. We verwijderen eerst het serienummer van de reeks en zetten de overgebleven losse cijfers in een rij (regel 1 van tabel \ref{tab:otp:decrypt}. Plaats daar onder de cijfers van de sleutel (regel 2 van tabel \ref{tab:otp:decrypt}. Trek het sleutelgetal van het cijfergetal af, is de uitkomst negatief tel dan 10 op bij het cijfergetal en trek nogmaals het sleutel getal ervan af (regel 3 van tabel \ref{tab:otp:decrypt}. En tot slot zoek je de gevonden waarden op in de ASCII tabel zodat op regel 4 het oorspronkelijke bericht weer verschijnt.
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{ | c || c | c | c | c | c | c | c | c | c | c | c | c | }
+\hline
+	1 & 5 9 & 4 7 & 2 8 & 8 1 & 8 1  & 4 5 & 1 9 & 4 5 & 4 1 & 6 2 & 4 6 & 8 1 \\
+	2 & 7 8 & 6 7 & 5 6 & 2 6 & 1 5  & 8 6 & 4 1 & 6 4 & 6 1 & 9 8 & 7 6 & 1 6 \\
+	3 & 8 1 & 8 0 & 7 2 & 6 5 & 7 6  & 6 9 & 7 8 & 8 1 & 8 0 & 7 4 & 7 0 & 7 5 \\
+	4 &  O  &  P  &  H  &  A  &  L   &  E  &  N  &  O  &  P  &  J  &  F  &  K \\
+\hline
+\end{tabular}
+\caption{OTP: Decrypt}
+\label{tab:otp:decrypt}
+\end{table}

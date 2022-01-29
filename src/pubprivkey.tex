@@ -1,0 +1,25 @@
+Asymmetrische encryptie is encryptie met public\index{Public key} en private keys\index{Private key}. De private key (sleutel) wordt zoals de naam al zegt geheim (priv\'e) gehouden, de public key wordt openbaar gemaakt. Iemand die iets geheims te versturen heeft gebruikt de openbare private key om het bericht te versleutelen. Alleen degene met de private key kan het bericht nu ontsleutelen (decrypten). Voor twee wegverkeer is het dus noodzakelijk dat beide partijen een private key hebben en dat de andere partij de publieke key kent.
+
+Encrypt je iets met de private key, dan kan iedereen die de publieke sleutel heeft het bericht decrypten. Dat heeft dus niets met beveiliging te maken. Het is wel een handige feature waar we later op terug komen.
+
+Met een public/private key combinatie kan op een veilige manier een symmetrische key worden uitgewisseld.
+
+Er zijn verschillende technieken op Internet die gebruik maken van public/private cryptografie. HTTPs (TLS), S/MIME, PGP (GPG) zijn wel de voornaamste technieken die we bijna dagelijks gebruiken om onze data veilig over het Internet te sturen. Er zijn verschillende algritmes die gebruikt kunnen worden, de veiligheid van de verschillende algoritmes hangt erg van van de toepassing waarvoor ze gebruikt worden. Het is ook van belang welke andere systemen ermee moeten kunnen werken. Voor HTTPs is het natuurlijk van belang dat zoveel mogelijk systemen het gebruikte algoritme ondersteunen, dus hier zal een andere keuze gemaakt worden dan bijvoorbeeld het encrypten van documenten van het Pentagon waar security vele malen belangrijker is en de uitwisseling juist geen rol speelt.
+
+\begin{description}
+\item[RSA] Rivest-Shamir-Adleman. De veiligheid van dit algoritme hangt van de key size af. 3072 of 4096 bits zijn nog veilig. Kleiner dan 2048 is onveilig. RSA bestaat al sinds 1977, dus er zijn veel implementaties voor veel systemen, dus dit algortime wordt door heel veel systemen ondersteund.
+\item[DSA] Digital Signature Algorithm. Is onveilig en zou niet meer gebruikt moeten worden, vanaf OpenSSH 7.0 per default gedisabled.
+\item[ECDSA] Elliptic Curves DSA. Redelijk veilig, een beetje afhankelijk van de random number generator die gebruikt wordt. Minimaal 256 bits key size.
+\item[ed25519] Op dit moment (2021) de meest veilige optie, maar ook de nieuwste dus niet overal al aanwezig.
+\end{description}
+
+De veiligheid van een algoritme wordt beschreven in het aantal pogingen dat er nodig is om de sleutel te breken. Met het steeds sneller worden van compters kunnen er steeds meer pogingen gedaan worden in dezelfde tijd. De eis van het NIST is op dit moment dat een algoritme beter moet zijn dan 128-bits, $2^128$ pogingen voordat het gebroken wordt. De veronderstelling is dat we daarmee tot 2030 vooruit kunnen. Voor RSA betekent dat een minimum van 3072 bits key size.
+
+Voor het maken van een public/private key pair zijn dus een aantal zaken van belang:
+\begin{itemize}
+	\item Key algoritm
+	\item Key size
+	\item Passphrase - Er kan op de private key aan passphrase gezet worden, maar dit hoeft niet.
+\end{itemize}
+
+Het maken van een public/private key paar is simpel. Op Linux en Mac OS X systemen kan je ssh-keygen gebruiken, op Windows PuTTYgen, of ook met ssh-keygen (command line) als je OpenSSH voor Windows hebt ge\"installeerd.

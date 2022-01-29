@@ -1,0 +1,64 @@
+Een veel gebruikte functie uit de boolean algebra in de cryptografie is de XOR. Het principe van de XOR is gebaseerd op het optellen van bits waarbij alleen het laatste digit wordt gebruikt:
+\begin{lstlisting}{language=bash}
+0 + 0 = 0
+1 + 0 = 1
+0 + 1 = 1
+1 + 1 = 0
+\end{lstlisting}
+
+Daarmee komt de waarheidstabel van de XOR op de tabel zoals weergegeven in \ref{tab:xor}
+
+\begin{table}[h]
+\centering
+\begin{tabular}{ | c | c | c| }
+	\hline
+	Input & Input & Output \\
+	Input A & Input B & A XOR B \\
+	\hline
+	0 & 0 & 0 \\
+	\hline
+	0 & 1 & 1 \\
+	\hline
+	1 & 0 & 1 \\
+	\hline
+	1 & 1 & 0 \\
+	\hline
+\end{tabular}
+\caption{XOR}
+\label{tab:xor}
+\end{table}
+
+Computers kunnen via een XOR heel snel een stroom met bits encrypten. De manier waarop dat gebeurt is weergegeven in tabel \ref{tab:xor:encrypt}.
+
+\begin{table}[h]
+\centering
+	\begin{tabular}{ |c|c|c|c|c|c|c|c|c| }
+		\hline
+		Klare tekst stream & 0 & 1 & 1 & 0 & 0 & 1 & 0 & 1 \\
+		\hline
+		Sleutel    & 1 & 0 & 1 & 1 & 0 & 1 & 1 & 0 \\
+		\hline
+		\hline
+		Cijfertekst& 1 & 1 & 0 & 1 & 0 & 0 & 1 & 1 \\
+		\hline
+	\end{tabular}
+	\caption{XOR Encrypt}
+	\label{tab:xor:encrypt}
+\end{table}
+
+Het leuke van de XOR functie is dat je ook weer een XOR gebruikt voor de decryptie en dat zie er dan uit zoals in tabel \ref{tab:xor:decrypt}
+\begin{table}[h]
+\centering
+	\begin{tabular}{ |c|c|c|c|c|c|c|c|c| }
+		\hline
+		Cijfertekst stream & 1 & 1 & 0 & 1 & 0 & 0 & 1 & 1 \\
+		\hline
+		Sleutel            & 1 & 0 & 1 & 1 & 0 & 1 & 1 & 0 \\
+		\hline
+		\hline
+		Klare tekst        & 0 & 1 & 1 & 0 & 0 & 1 & 0 & 1 \\
+		\hline
+	\end{tabular}
+	\caption{XOR decrypt}
+	\label{tab:xor:decrypt}
+\end{table}

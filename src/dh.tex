@@ -1,0 +1,38 @@
+In 1975 waren er twee wiskundigen, Whitfield Diffie\index{Diffie, Whitfield} en Martin Hellman\index{Hellman, Martin}, die een oplossing bedachten voor het probleem van het uitwisselen van symmetrische sleutels (symmetric keys). Ze kwam met een elegante wiskundige oplossing die het versturen van de sleutel over het Internet overbodig maakt. De sleutel wordt berekend door gebruik te maken van modulo rekenen (zie appendix \ref{chap:modulo}) en priemgetallen (getallen die alleen door 1 en zichzelf deelbaar zijn). De techniek die gebruikt wordt is naar hun vernoemd: Diffie-Hellman\index{Diffie-Hellman}, afgekort DH\index{DH}.
+
+Tabel \ref{tab:dh} beschrijft welke acties Alice en Bob moeten nemen om tot een gezamenlijke sleutel te komen. Terwijl Alice en Bob werken om tot een gezamenlijke sleutel te komen is Eve aanwezig die al het verkeerd tussen Alice en Bob afluisterd, want ook zij wil graag die geheime sleutel hebben.
+
+\begin{table}[h]
+\centering
+\begin{tabularx}{\textwidth}{ | c | X | X | X | X | X | }
+	\hline
+	Actie & Alice & & Eve & & Bob \\
+	\hline
+	& \multicolumn{5}{p{0.86\textwidth}|}{Alice en Bob spreken twee getallen af: p en q. De getallen zijn niet geheim en mogen over het Internet verstuurd worden. De eisen zijn dat beide getallen priemgetallen moeten zijn en dat q kleiner moet zijn dan p.} \\
+	\hline
+	1 & $p=11$ & -> & p, q & <- & $q=7$ \\
+	\hline
+	& \multicolumn{5}{p{0.86\textwidth}|}{Alice en Bob verzinnen ieder een eigen getal dat ze geheim houden en niet met elkaar delen.} \\
+	\hline
+	2 & $a=3$ & & & & $b=6$ \\
+	\hline
+	3 & $A=q^a\%p$ & & & & $B=q^b\%p$ \\
+	  & $A=7^3\%11$ & & & & $B=7^6\%11$ \\
+	  & $A=2$ & & & & $B=4$ \\
+	\hline
+	& \multicolumn{5}{p{0.86\textwidth}|}{Alice en Bob sturen hun berekende getallen, A en B, naar elkaar.} \\
+	\hline
+	4 & $A=2$ & -> & A, B & <- & $B=4$ \\
+	\hline
+	5 & $S=B^a\%p$  & & & & $S=A^b\%p$ \\
+	  & $S=4^3\%11$ & & & & $S=2^6\%11$ \\
+	  & $S=9$       & & & & $S=9$ \\
+	\hline
+\end{tabularx}
+\caption{DH uitleg}
+\label{tab:dh}
+\end{table}
+
+Eve heeft tijdens de afspraken van Alice en Bob meegeluisterd op de lijn en heeft nu de getallen p, q en A, B verzameld. Ze mist echter a of b om ook S te kunnen berekenen. Op deze manier hebben Alice en Bob via een rekenkundige weg een gezamenlijke sleutel S afgesproken zonder dat deze over het Internet gegaan is.
+
+Omdat de sleutel berekend wordt via een algortime (modulo rekenen) voldoet deze niet aan de eisen van een onbreekbare code, namelijk dat de sleutel volledig random moet zijn. In de praktijk is de techniek echter zo goed als we maar voldoende grote priemgetallen nemen dat we van een veilige verbinding kunnen spreken.

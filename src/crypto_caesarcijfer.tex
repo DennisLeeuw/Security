@@ -1,0 +1,46 @@
+\index{Caesarcijfer}\index{Caesarrotatie}\index{Substitutie!Rotatie}E\'en van de oudste vorm van substitutie cryptografie die we nog kennen is de Caesarcijfer (Caesarrotatie), gebruikt door Julius Caesar (100 v. Chr - 44 v. Chr.) om te voorkomen dat zijn bevelen in handen vielen van vijanden als zijn boodschappers onderweg overvallen en vermoord werden. De substitutie cryptografie die Caesar gebruikte bestond uit het verschuiven van de letters in het alfabet. Een verschuiving van 1 betekende dat alle letters A een B worden, alle letters B een C, etc. Een verschuiving van 4 kan er dan zo uit zien:
+
+%% \begin{tabularx}{\textwidth}{ | c | c | c | c | c | c | c | c | c | c | c | c | c | c | c | c | c | c | c | c | c | c | c | c | c | c | }
+%% \hline
+%%  a & b & c & d & e & f & g & h & i & j & k & l & m & n & o & p & q & r & s & t & u & v & w & x & y & z \\ 
+%% \hline
+%%  w & x & y & z & a & b & c & d & e & f & g & h & i & j & k & l & m & n & o & p & q & r & s & t & u & v \\
+%% \hline
+%% \end{tabularx}
+
+\begin{tabular}{ | c | c | c | c | c | c | c | c | c | c | c | c | c | c | c | c | c | c | c | }
+\hline
+ a & b & c & d & e & f & g & h & i & j & k & l & m & n & o & p & q & r & s \\ 
+\hline
+ w & x & y & z & a & b & c & d & e & f & g & h & i & j & k & l & m & n & o \\
+\hline
+\end{tabular}
+
+\begin{tabular}{ | c | c | c | c | c | c | c | }
+\hline
+ t & u & v & w & x & y & z \\ 
+\hline
+ p & q & r & s & t & u & v \\
+\hline
+\end{tabular}
+
+Als we in ons bericht in klaretekst de letter opzoeken in de bovenste regel en dan de letter uit de regel eronder noteren op een nieuw papiertje dan kunnen we de geencrypte tekst versturen zonder dat iemand meteen kan lezen wat er staat. Een voorbeeld:
+
+\begin{verbatim}
+Beste Bob, we gebruiken vandaag de Caesarrotatie, Groet Alice.
+xaopa xkx, sa caxnqegaj rwjzwwc za ywaownnkfwpea, cnkap wheya.
+\end{verbatim}
+
+Een andere naam voor de vorm van encryptie is ROT\index{ROT} van rotatie. De bovenstaande encryptie heet dan ROT4 omdat de letters 4 posities zijn opgeschoven. Een bijzonder vorm is de ROT13\index{ROT13}:
+
+\begin{tabular}{ | c | c | c | c | c | c | c | c | c | c | c | c | c | }
+	\hline
+ a & b & c & d & e & f & g & h & i & j & k & l & m \\
+	\hline
+ n & o & p & q & r & s & t & u & v & w & x & y & z \\
+	\hline
+\end{tabular}
+
+Het nadeel van de Caesarrotatie is dat er maar 25 verschillende mogelijkheden zijn die simpel uit te proberen zijn, maar in Caesar zijn tijd waarin veel mensen niet lezen konden wat dit minder een probleem. Het wat de elite die kon lezen en dan moesten ze ook nog instaat zijn om te begrijpen dat het om cryptografie ging om het bericht te ontsleutelen.
+
+Meer informatie: \url{https://nl.wikipedia.org/wiki/Caesarcijfer}
