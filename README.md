@@ -1,5 +1,5 @@
 # Security
-Dit is een eerste aanzet om een compleet open source boek te maken over Security voor het MBO. De tekst is geschreven in LaTeX, hoewel ik daar weinig kaas van heb gegeten. Het leek me de meest logisch taal om een boek in te schrijven omdat dit ook door drukkers makkelijk verwerkt kan worden en er standaard tools zijn voor de conversie naar PDF wat voor studenten dan weer een goed toegankelijk formaat is.
+Dit is een eerste aanzet om een compleet open source boek te maken over Security voor het MBO. De tekst is geschreven in LaTeX. Het leek me de meest logisch taal om een boek in te schrijven omdat dit ook door drukkers makkelijk verwerkt kan worden en er standaard tools zijn voor de conversie naar PDF wat voor studenten dan weer een goed toegankelijk formaat is.
 
 De reden om een open source boek te willen maken heeft te maken met een aantal redenen.
 * De eerste is de mogelijkheid om op deze manier gezamenlijk te werken aan een goed boek voor het MBO. Samen kunnen we meer en kunnen we beter materiaal maken dan een ieder alleen zou kunnen.
