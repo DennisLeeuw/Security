@@ -4,35 +4,41 @@ Tabel \ref{tab:dh} beschrijft welke acties Alice en Bob moeten nemen om tot een 
 
 \begin{table}[h]
 \centering
-\begin{tabularx}{\textwidth}{ | c | X | X | X | X | X | }
+	\begin{tabularx}{\textwidth}{ | c | X | m{1cm} | X | m{1cm} | X | }
 	\hline
 	Actie & Alice & & Eve & & Bob \\
 	\hline
-	& \multicolumn{5}{p{0.86\textwidth}|}{Alice en Bob spreken twee getallen af: p en q. De getallen zijn niet geheim en mogen over het Internet verstuurd worden. De eisen zijn dat beide getallen priemgetallen moeten zijn en dat q kleiner moet zijn dan p.} \\
+	& \multicolumn{5}{p{0.86\textwidth}|}{Alice en Bob spreken twee getallen af: p en q. De getallen zijn niet geheim en mogen over het Internet verstuurd worden. De eisen zijn dat beide getallen priemgetallen moeten zijn en dat q kleiner moet zijn dan p. Eve heeft nu p en q} \\
 	\hline
-	1 & $p=11$ & -> & p, q & <- & $q=7$ \\
+	1 & $p=11$ & \centering-> & p, q & \centering<- & $q=7$ \\
 	\hline
 	& \multicolumn{5}{p{0.86\textwidth}|}{Alice en Bob verzinnen ieder een eigen getal dat ze geheim houden en niet met elkaar delen.} \\
 	\hline
 	2 & $a=3$ & & & & $b=6$ \\
 	\hline
+	& \multicolumn{5}{p{0.86\textwidth}|}{Alice en Bob gebruiken modulo rekenen om A en B te berekenen.} \\
+	\hline
 	3 & $A=q^a\%p$ & & & & $B=q^b\%p$ \\
 	  & $A=7^3\%11$ & & & & $B=7^6\%11$ \\
 	  & $A=2$ & & & & $B=4$ \\
 	\hline
-	& \multicolumn{5}{p{0.86\textwidth}|}{Alice en Bob sturen hun berekende getallen, A en B, naar elkaar.} \\
+	& \multicolumn{5}{p{0.86\textwidth}|}{Alice en Bob sturen hun berekende getallen, A en B, naar elkaar. Eve heeft nu ook A en B} \\
 	\hline
-	4 & $A=2$ & -> & A, B & <- & $B=4$ \\
+	4 & $A=2$ & \centering-> & A, B & \centering<- & $B=4$ \\
+	\hline
+	& \multicolumn{5}{p{0.86\textwidth}|}{Alice en Bob gebruiken modulo rekenen om S te berekenen} \\
 	\hline
 	5 & $S=B^a\%p$  & & & & $S=A^b\%p$ \\
 	  & $S=4^3\%11$ & & & & $S=2^6\%11$ \\
 	  & $S=9$       & & & & $S=9$ \\
+	\hline
+	& \multicolumn{5}{p{0.86\textwidth}|}{Eve heeft tijdens de afspraken van Alice en Bob meegeluisterd op de lijn en heeft nu de getallen p, q en A, B verzameld. Ze mist echter a of b om ook S te kunnen berekenen. Op deze manier hebben Alice en Bob via een rekenkundige weg een gezamenlijke sleutel S afgesproken zonder dat deze over het Internet gegaan is.} \\
 	\hline
 \end{tabularx}
 \caption{DH uitleg}
 \label{tab:dh}
 \end{table}
 
-Eve heeft tijdens de afspraken van Alice en Bob meegeluisterd op de lijn en heeft nu de getallen p, q en A, B verzameld. Ze mist echter a of b om ook S te kunnen berekenen. Op deze manier hebben Alice en Bob via een rekenkundige weg een gezamenlijke sleutel S afgesproken zonder dat deze over het Internet gegaan is.
+Omdat de sleutel berekend wordt via een algortime (modulo rekenen) voldoet deze niet aan de eisen van een onbreekbare code, namelijk dat de sleutel volledig random moet zijn. In de praktijk is de techniek echter zo goed, als we maar voldoende grote priemgetallen nemen, dat we van een veilige verbinding kunnen spreken.
 
-Omdat de sleutel berekend wordt via een algortime (modulo rekenen) voldoet deze niet aan de eisen van een onbreekbare code, namelijk dat de sleutel volledig random moet zijn. In de praktijk is de techniek echter zo goed als we maar voldoende grote priemgetallen nemen dat we van een veilige verbinding kunnen spreken.
+Diffie-Hellman houdt geen rekening met de identiteit van de zender en/of ontvanger, dus een man-in-the-middle attack is nog steeds mogelijk. Het gebruik van public en private keys lost dit probleem op.
