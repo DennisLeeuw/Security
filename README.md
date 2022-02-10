@@ -8,6 +8,7 @@ De reden om een open source boek te willen maken heeft te maken met een aantal r
 * De vierde reden is dat we sneller nieuwe technieken kunnen toevoegen. Gezamenlijk kunnen we zorgen dat fouten en vernieuwingen niet hoeven te wachten totdat voorraden bij uitgevers zijn uitverkocht, we kunnen een nieuwe versie maken als dat nodig is.
 
 Het Security boek bestaat uit losse delen die een onderwerp behandelen. De beschikbare delen zijn:
+* Security: Cryptografie
 * Security: Webserver
 
 ## PDF Conversie
