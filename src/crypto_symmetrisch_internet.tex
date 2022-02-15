@@ -1,0 +1,15 @@
+Voor het sturen van data over Internet via bijvoorbeeld een website is een uitdaging voor symmetrische encryptie. Om echt onbreekbaar te zijn moeten we aan de volgende eisen voldoen:
+\begin{itemize}
+\item Volledige random key
+\item Key net zo lang als het bericht
+\item Zender en ontvanger gebruiken dezelfde sleutel voor encryptie en decryptie
+\item Sleutel mag maar 1x gebruikt worden
+\end{itemize}
+
+Een beetje pagina op Internet bevat, html-pagina, met CSS-document, 1 of meerdere javascript documenten, plaatjes, etc. Voor elk van deze stukken data hebben we dus een sleutel nodig die net zo lang is als het stuk data (video), die volledig random moet zijn en maar 1x gebruikt mag worden. Daarnaast moeten de webserver en de browser allebei deze sleutel hebben. Dus op de een of andere manier moet die sleutel over het Internet getransporteerd worden, op een veilige manier.
+
+Het volledig random genereren van data (sleutel) kan met een Hardware Random Number Generator\index{Hardware Random Number Generator}\index{HRNG} (HRNG). De meeste Random Number Generators\index{Random Number Generator}\index{RNG} gebruiken een sleutel om semi-random waarden te cre\"eeren en worden daarom Pseudo-Random Number Generators(PRNG)\index{Pseudo-Random Number Generator}\index{PRNG} genoemed. Met een PRNG voldoen we dus al niet meer aan de eis van echte onbreekbaarheid, toch wordt dit het meest gebruikt omdat het wel praktisch en relatief goedkoop toepasbaar blijft.
+
+De lengte stelt ons bij video's al snel voor een probleem. We moeten een sleutel maken die net zo lang is als de video en dus net zoveel ruimte in beslag neemt als de video.
+
+Ook het feit dat de zender en de ontvanger over dezelfde sleutel moeten beschikken kan een probleem opleveren, hoe zorgen we ervoor dat de ontvanger dezelfde sleutel krijgt als welke de verzender gebruikt heeft terwijl we alleen het onveilige Internet hebben om de sleutel over te versturen?
