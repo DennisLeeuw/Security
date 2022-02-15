@@ -1,6 +1,8 @@
-De digitale variant van de one-time pad\index{One-time pad} is de streaming cipher\index{Streaming cipher}. In een streaming cipher wordt de klare tekst gecombineerd met een keystream van volledig random data waarbij de klare tekst en de random tekst gecombineerd worden, bit voor bit. Een streaming cipher wordt gebruikt als we niet weten hoeveel data er komen gaat.
+In een streaming cipher\index{Streaming cipher} wordt de klare tekst gecombineerd met een keystream van random data waarbij de klare tekst en de random data gecombineerd worden, bit voor bit. Een streaming cipher wordt gebruikt als we niet weten hoeveel data er komen gaat.
 
 De keystream moet net zo lang of langer zijn als het te encrypten bericht en mag natuurlijk maar \'e\'en keer gebruikt worden. Door deze eisen is een werkelijke digitale implementatie van de one-time pad zeer lastig en wordt deze slechts zelden gebruikt. Het probleem is vooral het veilig delen van de key.
 
 De meeste streaming ciphers maken gebruik van een keystream die gegenereerd wordt op basis van een key (bijvoorbeel 128-bits), hierdoor is de keystream niet volledig random en spreken we van een pseudorandom keystream. Hierdoor is het bewijs dat de one-time pad onbreekbaar is niet geldig voor deze streaming ciphers, maar wordt deze wel vaak gebruikt in praktische toepassingen.
+
+Een streaming cipher maakt gebruik van een XOR. RC4 is \'e\'en van de meest bekende streaming ciphers. Een overzicht van andere stream ciphers is te vinden op \url{https://en.wikipedia.org/wiki/Stream_cipher}
 
