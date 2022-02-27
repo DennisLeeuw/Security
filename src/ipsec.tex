@@ -1,0 +1,16 @@
+IPsec is een afkorting van Internet Protocol Security. Is een verzameling van protocollen die er gezamenlijk voor zorgen dat data veilig over een IP netwerk gaan. IPsec werkt op OSI-layer 3 en is transparant voor alle bovenliggende lagen zoals TCP en UDP.
+
+De protocollen die IPsec gebruikt zijn:
+\begin{description}
+\item[IKE] Internet Key Exchange - Een protocol die ervoor zorgt dat de twee end-points van een VPN-tunnel dezelfde keys/certificaten gebruiken om de data te encrypten en decrypten.
+\item[ESP] Encapsulating Security Payload - Is een protocol dat voor de encryptie (confidentiality) zorgt en zorgt tevens voor de authenticatie, bescherming tegen replay attacks en interiteitschecks.
+\item[AH] Authentication Header - Is een protocol dat er voor zorgt dat als een packet onderweg gewijzigd is (tampering) dat dit gedetecteerd wordt. Door het verzonden packet te signen met het de Authentication Header kan de intergiteit (integrity) worden aangetoond, de AH doet geen encryptie en de gesignde data blijft dus leesbaar als er geen encryptie protocol wordt gebruikt.
+\end{description}
+
+IPsec kent twee manieren waarop het gebruikt kan worden:
+\begin{description}
+\item[Transport Mode] Gebruikt geen encryptie of alleen encryptie voor de (IP) payload. De IP header is dus niet encrypt. Het kan gebruikt worden voor bijvoorbeeld de communicatie tussen een werkstation en een server (host-to-server). Als AH wordt gebruikt dan is de IP header gehashed en kan dus niet meer veranderd worden, ook niet door een NAT-router. Een wijziging zou het totale packet als ongeldig bestempelen (Een mogelijke oplossing is door gebruik te maken van NAT-T \url{https://en.wikipedia.org/wiki/NAT_traversal}).
+
+\item[Tunnel Mode] Het complete IP packet wordt encrypt en opnieuw in een IP packet ingepakt voor verzending over het publieke netwerk. Het wordt vaak gebruikt tussen twee routers/gateways over het Internet om netwerken (site-to-site) aan elkaar te verbinden of om een host aan een netwerk (host-to-network) te verbinden. Tunnel Mode is wat we in het dagelijkse spraakgebruik een VPN noemen.
+\end{description}
+
