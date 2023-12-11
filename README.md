@@ -10,6 +10,7 @@ De reden om een open source boek te willen maken heeft te maken met een aantal r
 Het Security boek bestaat uit losse delen die een onderwerp behandelen. De beschikbare delen zijn:
 * Security: Cryptografie
 * Security: Webserver
+* Security: Malware
 
 ## PDF Conversie
 De conversie naar PDF doe ik met pdflatex
