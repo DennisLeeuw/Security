@@ -8,7 +8,7 @@ Er zijn een aantal eisen waaraan de versleuteling met een one-time pad moet vold
 \item \label{nl:random} De sleutel moet bestaan uit volledig willekeurige (random) waarden. Er mag dus geen algoritme worden gebruikt, maar er moet zoiets gebruikt worden als een hardware random number generator
 \end{enumerate}
 
-In tabel \ref{tab:onetimepad} staan 2 rijen volledig willekeurige cijfers (eis \ref{nl:random}). Ze zijn opgedeeld in blokken van 10 cijfers en er zijn 5 blokken per rij. Dat betekent dat we 100 willekeurige cijfers hebben. Als we een bericht schrijven in alleen hoofdletters en de letters omzetten via de ASCII tabel \url{https://en.wikipedia.org/wiki/ASCII} dan hebben we voor de letters A tot Z de decimale getallen 65 tot 90 nodig. We gebruiken dus 2 cijfers per letter. Met een maximale sleutellengte van 100 cijfers kunnen we dus maximaal een bericht van 50 characters verstuuren om te blijven voldoen aan de eis \ref{nl:length}.
+In tabel \ref{tab:onetimepad} staan 2 rijen volledig willekeurige cijfers (eis \ref{nl:random}). Ze zijn opgedeeld in blokken van 10 cijfers en er zijn 5 blokken per rij. Dat betekent dat we 100 willekeurige cijfers hebben. Als we een bericht schrijven in alleen hoofdletters en de letters omzetten via de ASCII tabel \url{https://en.wikipedia.org/wiki/ASCII} dan hebben we voor de letters A tot Z de decimale getallen 65 tot 90 nodig. We gebruiken dus 2 cijfers per letter. Met een maximale sleutellengte van 100 cijfers kunnen we dus maximaal een bericht van 50 characters versturen om te blijven voldoen aan eis \ref{nl:length}.
 
 \begin{table}[h!]
 \begin{tabular}{ | c | }
@@ -43,7 +43,7 @@ Als een spion een bericht wil versturen dan stelt hij eerst zijn bericht op van 
 
 De spion moet hierna het serienummer van het bericht opschrijven plus de gemaakt te cijferreeks: 5837424594728818145194541624681 en deze code is volledig onbreekbaar. Alleen degene met een papiertje met hetzelfde serienummer en dus dezelfde sleutel kan dit bericht decoderen.
 
-Het decoderen verloopt door het omgekeerde proces te doorlopen. We verwijderen eerst het serienummer van de reeks en zetten de overgebleven losse cijfers in een rij (regel 1 van tabel \ref{tab:otp:decrypt}. Plaats daar onder de cijfers van de sleutel (regel 2 van tabel \ref{tab:otp:decrypt}. Trek het sleutelgetal van het cijfergetal af, is de uitkomst negatief tel dan 10 op bij het cijfergetal en trek nogmaals het sleutel getal ervan af (regel 3 van tabel \ref{tab:otp:decrypt}. En tot slot zoek je de gevonden waarden op in de ASCII tabel zodat op regel 4 het oorspronkelijke bericht weer verschijnt.
+Het decoderen verloopt door het omgekeerde proces te doorlopen. We verwijderen eerst het serienummer van de reeks en zetten de overgebleven losse cijfers in een rij (regel 1 van tabel \ref{tab:otp:decrypt}. Plaats daar onder de cijfers van de sleutel (regel 2 van tabel \ref{tab:otp:decrypt}. Trek het sleutelgetal van het cijfergetal af, is de uitkomst negatief tel dan 10 op bij het cijfergetal (het getal uit het bericht) en trek nogmaals het sleutel getal ervan af (regel 3 van tabel \ref{tab:otp:decrypt}. En tot slot zoek je de gevonden waarden op in de ASCII tabel zodat op regel 4 het oorspronkelijke bericht weer verschijnt.
 
 \begin{table}[h!]
 \centering
