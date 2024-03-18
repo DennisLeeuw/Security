@@ -1,10 +1,10 @@
-\index{Hashing}Een van de eerste dingen die we willen weten als we een bericht naar iemand sturen is of dit correct is aangekomen en met correct bedoelen we dat er onderweg geen wijzigingen hebben plaats gevonden. Het kan natuurlijk gebeuren dat door een slechte verbinding een 1 in een 0 veranderd, maar het kan ook zo zijn dat ergens onderweg iemand stiekem onze dat heeft gewijzigd. Het kan bijvoorbeeld zo zijn dat als er software van Internet gedownload wordt dat aan deze software een virus hangt die tegelijk met de software ge\"installeerd wordt. Om zeker te zijn dat we de software downloaden zoals deze op de website is gezet kan een leverancier ervoor kiezen om een hash over de software te berekenen en deze uitkomst openbaar op de website te zetten. Berekenen je over de gedownloade software zelf ook de hash dan moeten deze twee gelijk zijn. Is dat het geval dan weet je zeker dat er niet met de software gerommeld is. De kunst van goede hashing software is dat er bij verschillende input nooit twee dezelfde antwoorden uit mogen komen.
+\index{Hashing}Een van de eerste dingen die we willen weten als we een bericht naar iemand sturen is of dit correct is aangekomen en met correct bedoelen we dat er onderweg geen wijzigingen hebben plaats gevonden. Het kan natuurlijk gebeuren dat door een slechte verbinding een 1 in een 0 verandert, maar het kan ook zo zijn dat ergens onderweg iemand stiekem onze data heeft gewijzigd. Het kan bijvoorbeeld zo zijn dat als er software van Internet gedownload wordt dat aan deze software een virus hangt die tegelijk met de software ge\"installeerd wordt. Om zeker te zijn dat we de software downloaden zoals deze op de website is gezet kan een leverancier ervoor kiezen om een hash over de software te berekenen en deze uitkomst openbaar op de website te zetten. Berekenen je over de gedownloade software zelf ook de hash dan moeten deze twee gelijk zijn. Is dat het geval dan weet je zeker dat er niet met de software gerommeld is. De kunst van goede hashing software is dat er bij verschillende input nooit twee dezelfde antwoorden uit mogen komen.
 
 Een simpele vorm van hashing zou kunnen zijn dat de hashing-software alle 1'en en alle 0'en telt en deze twee getallen achter elkaar zet. Het resultaat maakt de leverancier dan bekent. Als jij hetzelfde doet dan kan je de twee uitkomsten vergelijken. Dit is natuurlijk wel heel simpel en er is makkelijk mee te sjoemelen, toch is het principe van hashing-software hetzelfde.
 
 MD5\index{MD5}\index{Hashing!MD5}, ofwel Message-Digest 5\index{Message-Digest 5}, is bedacht door Ronald Rivest in 1991 en kent een 128 bits hash-waarde. Dit is lange tijd een veel gebruikt hashing-algoritme geweest tot ontdekt werd dat het helemaal niet zo moeilijk was om bij verschillende input een gelijke hash-waarde te cre\"eren.
 
-SHA\index{SHA}\index{Hashing!SHA}, ofwel Secure Hashing Algorithems\index{Secure Hashing Algorithms}, is een collectie van algoritmes. Het oorspronkelijke algoritme (nu bekend on de naam SHA-0 of SHA) heeft maar heel kort bestaan omdat er een fout in zat. De eerste versie die wel veel gebruikt is (tot 2010) heeft een lengte van 160-bits en staat bekend als SHA-1 (of ook hier gewoon SHA). SHA-2 bestaat uit twee verschillende functies, \'e\'en met 256-bits en \'e\'en met 512-bits hash-waardes. Daarnaast is er ook nog SHA-3. Voor meer inhoudelijke informatie over SHA verwijzen we graag naar de Wikipedia-pagina \url{https://en.wikipedia.org/wiki/Secure\_Hash\_Algorithms}
+SHA\index{SHA}\index{Hashing!SHA}, ofwel Secure Hashing Algorithems\index{Secure Hashing Algorithms}, is een collectie van algoritmes. Het oorspronkelijke algoritme (nu bekend onder de naam SHA-0 of SHA) heeft maar heel kort bestaan omdat er een fout in zat. De eerste versie die wel veel gebruikt is (tot 2010) heeft een lengte van 160-bits en staat bekend als SHA-1 (of ook hier gewoon SHA). SHA-2 bestaat uit twee verschillende functies, \'e\'en met 256-bits en \'e\'en met 512-bits hash-waardes. Daarnaast is er ook nog SHA-3. Voor meer inhoudelijke informatie over SHA verwijzen we graag naar de Wikipedia-pagina \url{https://en.wikipedia.org/wiki/Secure\_Hash\_Algorithms}
 
 Op Windows 10 is er een tool genaamd certutil.exe\index{certutil} die gebruikt kan worden om hashing-waarden te berekenen. Deze tool kan alleen vanaf de commandline gebruikt worden door de administrator.
 
@@ -14,7 +14,7 @@ C:\> certutil -hashfile <PATH_TO_FILE> <HASH_ALGORITHM>
 
 Het HASH\_ALGORITHM kan MD5 zijn, maar bijvoorbeeld ook SHA256.
 
-Linux en Mac OS X hebben afzonderlijk tools voor MD5 en SHA.
+Linux en Mac OS X hebben afzonderlijke tools voor MD5 en SHA.
 \index{md5sum}\index{sha256sum}\index{sha512sum}
 \begin{lstlisting}[language=bash]
 $ md5sum <PATH_TO_FILE>
@@ -23,3 +23,4 @@ $ sha512sum <PATH_TO_FILE>
 \end{lstlisting}
 
 Binnen de cryptografie is het kunnen berekenen van een unique hash-waarde over een bestand of bericht essentieel.
+
